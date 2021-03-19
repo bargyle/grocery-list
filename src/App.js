@@ -1,4 +1,4 @@
-import { Component }  from 'react';
+import { Component } from 'react';
 import ItemList from './components/Items/ItemList';
 import ItemForm from './components/Items/ItemForm';
 import Footer from './components/Items/Footer';
