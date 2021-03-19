@@ -1,25 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
+import ( Component ) from 'react';
+import ItemList from './components/Items/ItemList';
+import ItemForm from '/.components/Items/ItemForm';
+import Footer from '/.components/Items/Footer';
 
-function App() {
+class App extends Component {
+  state = { items: [
+      { id: 1, title: "Apples", complete: true },
+      { id: 2, title: "Oranges", complete: false },
+      { id: 3, title: "Peaches", complete: true },
+    ],
+    filter: 'All'
+  }
+
+  setFilter = (filter) => this.setState({ filter })
+  getUniqId = () => {
+    return Math.floor((1 + Math.random()) * 0x100000)
+      .toString(16)
+      .substring(1);
+  }
+
+  addItem = (incomingItem) => {
+    const {items} = this.state
+    const { title, complete } = incomingList
+    const newItem = { id: this.getUniqId(), title, complete }
+    this.setState({ items: [newItem, ...items]})
+  }
+
+  updateComplete = (id) => {
+    const { items } = this.state
+    this.setState({
+      items: items.map( i => {
+        if (i.id === id) {
+          return {
+            ...i,
+            complete: !i.complete
+          }
+        }
+        return i
+      })
+    })
+  }
+
+  visibleItems = () => {
+    const { items, filter } = this.state
+    switch(filter) {
+      case 'Active':
+        return items.filter( t => !t.complete)
+      case 'Completed':
+        return items.filter( t => t.complete )
+      default:
+        return items
+    }
+  }
+
+
+render() {
+  const { items, filter } = this.state
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Footer filter={filter} setFilter={this.setFilter} />
+      <ItemList items={this.visibleItems()} updateComplete={this.updateComplete} />
+      <ItemForm addItem={this.addItem} />
+    </>
+    )
+  }
 }
 
 export default App;
+
