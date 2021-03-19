@@ -1,13 +1,13 @@
-import ( Component ) from 'react';
+import { Component }  from 'react';
 import ItemList from './components/Items/ItemList';
-import ItemForm from '/.components/Items/ItemForm';
-import Footer from '/.components/Items/Footer';
+import ItemForm from './components/Items/ItemForm';
+import Footer from './components/Items/Footer';
 
 class App extends Component {
   state = { items: [
       { id: 1, title: "Apples", complete: true },
       { id: 2, title: "Oranges", complete: false },
-      { id: 3, title: "Peaches", complete: true },
+      { id: 3, title: "Peaches", complete: true }
     ],
     filter: 'All'
   }
@@ -21,7 +21,7 @@ class App extends Component {
 
   addItem = (incomingItem) => {
     const {items} = this.state
-    const { title, complete } = incomingList
+    const { title, complete } = incomingItem
     const newItem = { id: this.getUniqId(), title, complete }
     this.setState({ items: [newItem, ...items]})
   }
@@ -45,9 +45,9 @@ class App extends Component {
     const { items, filter } = this.state
     switch(filter) {
       case 'Active':
-        return items.filter( t => !t.complete)
+        return items.filter( i => !i.complete)
       case 'Completed':
-        return items.filter( t => t.complete )
+        return items.filter( i => i.complete )
       default:
         return items
     }

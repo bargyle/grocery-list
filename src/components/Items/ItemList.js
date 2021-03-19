@@ -2,7 +2,7 @@ import Item from './Item';
 const ItemList = ({ items, updateComplete }) => {
   return (
     <>
-      <h1>Items</h1>
+      <h1>Items for our store</h1>
       {
         <ul>
           { items.map( i => (
@@ -14,4 +14,4 @@ const ItemList = ({ items, updateComplete }) => {
   )
 }
 
-export default TodoList;
+export default ItemList;
