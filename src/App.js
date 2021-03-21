@@ -25,6 +25,16 @@ class App extends Component {
     const newItem = { id: this.getUniqId(), title, complete }
     this.setState({ items: [newItem, ...items]})
   }
+  deleteItem = (id)=>{
+    const items = this.state.items.filter( i => {
+      if (i.id !== id) {
+        return i
+      }
+    })
+    this.setState({ items: [...items]})
+  }
+
+
 
   updateComplete = (id) => {
     const { items } = this.state
@@ -59,8 +69,13 @@ render() {
   return (
     <>
       <Footer filter={filter} setFilter={this.setFilter} />
-      <ItemList items={this.visibleItems()} updateComplete={this.updateComplete} />
+      <ItemList 
+        items={this.visibleItems()} 
+        updateComplete={this.updateComplete}
+        deleteItem={this.deleteItem}
+       />
       <ItemForm addItem={this.addItem} />
+      
     </>
     )
   }
