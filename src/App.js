@@ -34,6 +34,17 @@ class App extends Component {
     this.setState({ items: [...items]})
   }
 
+  updateItem = (id, incomingItem) => {
+    let updatedItem = { id: id, ...incomingItem }
+    const items = this.state.items.map( item => {
+      if (item.id === id) {
+        return updatedItem
+      }
+      return item
+    })
+    this.setState({ items: [ ...items ] })
+  }
+
 
 
   updateComplete = (id) => {
@@ -73,6 +84,7 @@ render() {
         items={this.visibleItems()} 
         updateComplete={this.updateComplete}
         deleteItem={this.deleteItem}
+        updateItem = {this.updateItem}
        />
       <ItemForm addItem={this.addItem} />
       
