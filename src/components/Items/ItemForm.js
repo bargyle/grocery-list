@@ -10,7 +10,12 @@ class ItemForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.addItem(this.state)
+    if (this.props.id) {
+      this.props.updateItem(this.props.id, this.state)
+      this.props.toggleEdit()
+    }else{
+      this.props.addItem(this.state)
+    }
     this.setState({ title: "", complete: false })
   }
 
@@ -24,7 +29,8 @@ class ItemForm extends Component {
           name="title"
           onChange={this.handleChange}
           required
-          placeholder="add an item"
+          placeholder="Item Name"
+          
         />
         <button type="submit">Submit</button>
       </form>
