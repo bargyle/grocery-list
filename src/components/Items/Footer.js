@@ -1,3 +1,6 @@
+import { Container } from 'semantic-ui-react';
+
+
 const styles = {
   link: {
     cursor: 'pointer',
@@ -18,11 +21,11 @@ const filterLink = (current, name, setFilter) => {
 
 const Footer =({ filter, setFilter }) => {
   return (
-    <div>
+    <Container align='center'>
       {
         ['All', 'Active', 'Completed'].map( f => filterLink(filter, f, setFilter))
       }
-    </div>
+    </Container>
   )
 }
 

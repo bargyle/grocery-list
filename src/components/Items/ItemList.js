@@ -1,20 +1,22 @@
 import Item from './Item';
+import { Header, List, Container } from 'semantic-ui-react'
+
 const ItemList = ({ items, updateComplete, deleteItem, updateItem}) => {
   return (
     <>
-      <h1>Items for our store</h1>
+      <Header as='h1' text align='center' inverted color='orange' block>Grocery List</Header>
       {
-        <ul>
-          { items.map( i => (
-            <Item key={i.id} {...i} 
-            updateComplete={updateComplete}
-            deleteItem={deleteItem}
-            updateItem={updateItem}
-                                                
-            />
-           
-          ))}
-        </ul>
+        <Container textAlign='center'>
+          <List>
+            { items.map( i => (
+              <Item key={i.id} {...i}
+              updateComplete={updateComplete}
+              deleteItem={deleteItem}
+              updateItem={updateItem}
+              />
+            ))}
+          </List>
+        </Container>
       }
     </>
   )

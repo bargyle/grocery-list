@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ItemForm from './ItemForm';
+import { Button, List } from 'semantic-ui-react';
 class Item extends Component {
   state = {editing: false}
   toggleEdit = () => {
@@ -10,22 +11,20 @@ class Item extends Component {
     const  { title, id, complete, updateComplete, deleteItem,} = this.props
       return (
         <>
-          <li
+          <List as='h2'
             style = { complete ? {...styles.complete } : null }
             onClick={() => updateComplete(id)}
             >
               { title }
-          </li>
-          
-          <button onClick={() => deleteItem(id)}>delete</button>
+          </List>
+          <Button size='mini' basic color='red' onClick={() => deleteItem(id)}>delete</Button>
 
           {
-            this.state.editing ? 
+            this.state.editing ?
             <ItemForm {...this.props} toggleEdit={this.toggleEdit} />
             :
-            <button onClick={this.toggleEdit}>Edit</button>
+            <Button size='mini' basic color='brown' onClick={this.toggleEdit}>Edit</Button>
           }
-
 
         </>
       )
@@ -39,5 +38,5 @@ class Item extends Component {
         textDecoration: 'line-through'
       }
     }
-  
+
 export default Item;
