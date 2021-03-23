@@ -3,9 +3,10 @@ import ItemList from './components/Items/ItemList';
 import ItemForm from './components/Items/ItemForm';
 import Footer from './components/Items/Footer';
 
+
 class App extends Component {
   state = { items: [
-      { id: 1, title: "Apples", complete: true },
+      { id: 1, title: "Apples", complete: false },
       { id: 2, title: "Oranges", complete: false },
       { id: 3, title: "Peaches", complete: true }
     ],
@@ -80,14 +81,13 @@ render() {
   return (
     <>
       <Footer filter={filter} setFilter={this.setFilter} />
-      <ItemList 
-        items={this.visibleItems()} 
+      <ItemList
+        items={this.visibleItems()}
         updateComplete={this.updateComplete}
         deleteItem={this.deleteItem}
         updateItem = {this.updateItem}
-       />
+      />
       <ItemForm addItem={this.addItem} />
-      
     </>
     )
   }

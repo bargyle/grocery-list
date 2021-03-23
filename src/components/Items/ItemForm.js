@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import { Button, Container } from 'semantic-ui-react';
 class ItemForm extends Component {
   state = { title: "", complete: false }
 
@@ -21,19 +21,20 @@ class ItemForm extends Component {
 
   render () {
     const { title } = this.state
-    
+
     return(
-      <form onSubmit={this.handleSubmit}>
-        <input
-          value={title}
-          name="title"
-          onChange={this.handleChange}
-          required
-          placeholder="Item Name"
-          
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <Container align='center'>
+        <form onSubmit={this.handleSubmit}>
+          <input
+            value={title}
+            name="title"
+            onChange={this.handleChange}
+            required
+            placeholder="Item Name"
+          />
+          <Button color='Blue' size='small' type="submit">Submit</Button>
+        </form>
+      </Container>
     )
   }
 }
