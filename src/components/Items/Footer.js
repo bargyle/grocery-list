@@ -1,4 +1,4 @@
-import { Container } from 'semantic-ui-react';
+import { Container, Menu } from 'semantic-ui-react';
 
 
 const styles = {
@@ -22,9 +22,17 @@ const filterLink = (current, name, setFilter) => {
 const Footer =({ filter, setFilter }) => {
   return (
     <Container align='center'>
-      {
-        ['All', 'Active', 'Completed'].map( f => filterLink(filter, f, setFilter))
-      }
+      <Menu widths='10'>
+        <Menu.Item>
+          {['All'].map( f => filterLink(filter, f, setFilter))}
+        </Menu.Item>
+        <Menu.Item>
+          {['Active'].map( f => filterLink(filter, f, setFilter))}
+        </Menu.Item>
+        <Menu.Item>
+          {['Completed'].map( f => filterLink(filter, f, setFilter))}
+        </Menu.Item>
+      </Menu>
     </Container>
   )
 }
